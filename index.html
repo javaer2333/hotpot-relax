@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#1d1009">
+  <meta name="description" content="解压火锅店——一锅热气，慢慢捞。找食材，凑三份，把这一锅轻轻捞干净。">
+  <title>解压火锅店 · 慢慢捞光这一锅</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238f2c1f'/%3E%3Cpath d='M20 15c-3 5 3 7 1 11M32 12c-3 6 3 8 1 12M44 15c-3 5 3 7 1 11' fill='none' stroke='%23f5d49a' stroke-width='2' stroke-linecap='round' opacity='.8'/%3E%3Cellipse cx='32' cy='38' rx='21' ry='13' fill='%232b1a12' stroke='%23f0c678' stroke-width='2.5'/%3E%3Cellipse cx='32' cy='36' rx='16' ry='8' fill='%23d66b2d'/%3E%3Cpath d='M16 40c3 7 11 10 16 10s13-3 16-10' fill='none' stroke='%23f0c678' stroke-width='2.2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <div class="page-glow" aria-hidden="true"></div>
+    <main class="game" id="game" aria-label="解压火锅店游戏">
+      <!-- ================= 背景 ================= -->
+      <div class="backdrop" aria-hidden="true">
+        <div class="night-scene">
+          <svg viewBox="0 0 600 390" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#2f2a35"/>
+                <stop offset=".34" stop-color="#6b4650"/>
+                <stop offset=".61" stop-color="#b96850"/>
+                <stop offset=".78" stop-color="#e59c5d"/>
+                <stop offset="1" stop-color="#f2b56c"/>
+              </linearGradient>
+              <radialGradient id="sunGlow" cx=".5" cy=".5" r=".5">
+                <stop offset="0" stop-color="#ffd991" stop-opacity=".8"/>
+                <stop offset=".45" stop-color="#f7b46f" stop-opacity=".28"/>
+                <stop offset="1" stop-color="#f7b46f" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="waterGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#4f3a36"/>
+                <stop offset=".32" stop-color="#25262a"/>
+                <stop offset="1" stop-color="#111518"/>
+              </linearGradient>
+              <linearGradient id="templeFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#623f33"/>
+                <stop offset=".7" stop-color="#3a2723"/>
+                <stop offset="1" stop-color="#231a18"/>
+              </linearGradient>
+              <linearGradient id="templeGold" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#f7d58e"/>
+                <stop offset=".5" stop-color="#d69b4b"/>
+                <stop offset="1" stop-color="#8d5a29"/>
+              </linearGradient>
+              <filter id="sceneBlur"><feGaussianBlur stdDeviation="6"/></filter>
+              <filter id="softGlow"><feGaussianBlur stdDeviation="3"/></filter>
+            </defs>
+
+            <rect width="600" height="390" fill="url(#skyGradient)"/>
+            <circle cx="393" cy="186" r="170" fill="url(#sunGlow)"/>
+            <circle cx="393" cy="193" r="25" fill="#ffdf9c" opacity=".48" filter="url(#softGlow)"/>
+
+            <g fill="#f6c28a" opacity=".12">
+              <ellipse cx="122" cy="84" rx="95" ry="12"/>
+              <ellipse cx="246" cy="122" rx="66" ry="7"/>
+              <ellipse cx="486" cy="71" rx="110" ry="10"/>
+              <ellipse cx="424" cy="145" rx="76" ry="6"/>
+            </g>
+            <g fill="#34262b" opacity=".45">
+              <path d="M0 206 Q54 179 113 198 T231 198 T350 191 T489 203 T600 191 V230 H0Z"/>
+            </g>
+
+            <!-- 远处的小塔与树影 -->
+            <g fill="#563b32" opacity=".85">
+              <path d="M25 232 L42 196 L51 211 L63 184 L75 211 L86 197 L102 232Z"/>
+              <path d="M142 230 L153 203 L160 219 L170 194 L181 220 L190 205 L204 230Z"/>
+              <path d="M265 226 L280 191 L292 209 L304 181 L318 208 L329 195 L342 226Z"/>
+              <path d="M0 232 Q20 216 42 223 T82 219 Q101 214 121 232Z"/>
+            </g>
+            <g fill="#3f2d28">
+              <circle cx="11" cy="210" r="24"/>
+              <circle cx="38" cy="197" r="31"/>
+              <circle cx="565" cy="204" r="38"/>
+              <circle cx="593" cy="190" r="27"/>
+            </g>
+
+            <!-- 左侧寺庙屋顶 -->
+            <g stroke-linejoin="round">
+              <path d="M-16 259 C34 239 75 230 124 230 L102 247 L143 247 L108 260 L-16 270Z" fill="#422c25"/>
+              <path d="M14 245 C64 221 123 210 191 216 L163 233 L201 237 L158 251 L19 259Z" fill="url(#templeFill)" stroke="#9c693a" stroke-width="1.2"/>
+              <path d="M28 231 C70 218 127 211 166 218" fill="none" stroke="#d6a15d" stroke-width="1.1" opacity=".6"/>
+              <path d="M42 240 Q91 230 146 231" fill="none" stroke="#b47c43" stroke-width="1" opacity=".6"/>
+              <g fill="#f6bc68" opacity=".8">
+                <rect x="42" y="253" width="5" height="10" rx="2"/>
+                <rect x="65" y="249" width="4" height="9" rx="2"/>
+                <rect x="91" y="246" width="5" height="10" rx="2"/>
+                <rect x="121" y="244" width="4" height="9" rx="2"/>
+              </g>
+              <path d="M23 270 L23 291 M161 260 L161 293" stroke="#34221e" stroke-width="3"/>
+            </g>
+
+            <!-- 右侧主塔 -->
+            <g stroke-linejoin="round">
+              <!-- 背后小塔 -->
+              <path d="M340 248 L348 185 L355 205 L362 165 L368 204 L377 182 L389 248Z" fill="#34231f" opacity=".8"/>
+              <path d="M510 251 L518 205 L525 221 L534 188 L542 221 L551 207 L562 251Z" fill="#3a2721" opacity=".85"/>
+
+              <!-- 台基和回廊 -->
+              <path d="M385 254 H575 L560 278 H397Z" fill="#3d2a23"/>
+              <path d="M403 236 H557 L571 254 H389Z" fill="url(#templeFill)" stroke="#a56e3a" stroke-width="1.1"/>
+              <path d="M411 231 H545 L557 236 H398Z" fill="#8a5b33" opacity=".9"/>
+              <path d="M398 278 H560 L552 298 H406Z" fill="#2f221e"/>
+
+              <!-- 中央金塔 -->
+              <g>
+                <path d="M470 78 L479 95 L475 127 L460 139 L470 151 L455 164 L474 181 L443 208 H501 L471 181 L490 164 L475 151 L486 139 L471 127 L468 95Z" fill="url(#templeGold)" stroke="#6a4122" stroke-width="1.2"/>
+                <path d="M470 78 L473 100 L470 123 M445 208 H499 M453 192 H488 M459 176 H481" fill="none" stroke="#ffe3a7" stroke-width=".9" opacity=".5"/>
+                <path d="M470 66 L473 79 L467 79Z" fill="#ffd282"/>
+                <circle cx="470" cy="61" r="3" fill="#ffdfa1"/>
+              </g>
+              <g>
+                <path d="M419 141 L427 157 L417 172 L435 188 H403 L421 172 L411 157Z" fill="url(#templeGold)" stroke="#684222" stroke-width="1.1"/>
+                <path d="M521 137 L529 155 L518 172 L537 190 H505 L524 172 L513 155Z" fill="url(#templeGold)" stroke="#684222" stroke-width="1.1"/>
+              </g>
+
+              <!-- 主屋顶 -->
+              <path d="M354 235 C382 218 424 208 470 209 C516 209 550 219 571 236 L543 232 Q507 222 473 224 Q428 222 386 234Z" fill="#50372c" stroke="#cb9554" stroke-width="1.4"/>
+              <path d="M372 226 C408 210 437 203 470 203 C506 203 540 213 559 229" fill="none" stroke="#f0bd71" stroke-width="1.2" opacity=".62"/>
+              <path d="M394 219 C423 211 443 207 471 207" fill="none" stroke="#c4884b" stroke-width="1" opacity=".55"/>
+              <path d="M347 238 L333 247 L368 244 L358 254 L575 247 L590 238Z" fill="#412c25" opacity=".85"/>
+
+              <!-- 窗与灯 -->
+              <g fill="#ffc678">
+                <rect x="421" y="231" width="5" height="15" rx="2.5"/>
+                <rect x="448" y="228" width="4" height="15" rx="2"/>
+                <rect x="480" y="228" width="4" height="15" rx="2"/>
+                <rect x="514" y="231" width="5" height="15" rx="2.5"/>
+                <rect x="446" y="258" width="8" height="12" rx="3" fill="#f39e54"/>
+                <rect x="486" y="258" width="8" height="12" rx="3" fill="#f39e54"/>
+              </g>
+              <g fill="#ffdda0" opacity=".7">
+                <circle cx="404" cy="239" r="2.2"/>
+                <circle cx="546" cy="239" r="2.2"/>
+                <circle cx="378" cy="247" r="1.5"/>
+                <circle cx="563" cy="247" r="1.5"/>
+              </g>
+              <g stroke="#d49b56" stroke-width=".8" opacity=".5">
+                <path d="M398 236 V252 M403 236 V252 M554 236 V252 M559 236 V252"/>
+              </g>
+            </g>
+
+            <!-- 湖面 -->
+            <path d="M0 286 C94 274 200 278 302 283 C404 288 511 276 600 288 V390 H0Z" fill="url(#waterGradient)"/>
+            <path d="M0 286 C94 279 197 283 301 287 C424 292 512 281 600 291" fill="none" stroke="#ddad72" stroke-width="1.2" opacity=".35"/>
+            <g fill="none" stroke="#e5a763" stroke-linecap="round">
+              <path d="M402 298 C424 294 456 298 476 296" stroke-width="1.6" opacity=".3"/>
+              <path d="M432 304 C462 300 504 303 531 301" stroke-width="1.1" opacity=".24"/>
+              <path d="M479 312 C504 309 536 310 556 313" stroke-width="1.5" opacity=".2"/>
+              <path d="M82 299 C112 294 144 298 160 295" stroke-width="1.1" opacity=".16"/>
+              <path d="M232 307 C258 303 284 306 305 304" stroke-width="1.2" opacity=".16"/>
+              <path d="M310 322 C347 316 392 320 430 318" stroke-width="1.5" opacity=".14"/>
+              <path d="M14 322 C62 315 94 318 122 317" stroke-width="1" opacity=".12"/>
+            </g>
+            <g fill="#ffcf86">
+              <circle cx="326" cy="301" r="2.4" opacity=".6"/>
+              <circle cx="348" cy="310" r="1.7" opacity=".45"/>
+              <circle cx="371" cy="296" r="1.9" opacity=".5"/>
+              <circle cx="548" cy="318" r="2" opacity=".35"/>
+              <circle cx="579" cy="305" r="1.4" opacity=".4"/>
+              <circle cx="117" cy="308" r="1.5" opacity=".35"/>
+              <circle cx="196" cy="319" r="1.2" opacity=".25"/>
+            </g>
+            <g opacity=".5">
+              <ellipse cx="325" cy="306" rx="58" ry="1.1" fill="#f3c486" filter="url(#softGlow)"/>
+              <ellipse cx="472" cy="314" rx="76" ry="1.2" fill="#f3c486" filter="url(#softGlow)"/>
+              <ellipse cx="121" cy="316" rx="40" ry=".8" fill="#e2ad74" filter="url(#softGlow)"/>
+            </g>
+
+            <!-- 小船与灯影 -->
+            <g opacity=".82">
+              <path d="M67 311 Q92 322 131 311 L122 319 Q95 328 75 318Z" fill="#241d19"/>
+              <path d="M99 288 L99 311 M99 289 L118 306" stroke="#28201b" stroke-width="1.4"/>
+              <path d="M76 299 L98 281 L122 295Z" fill="#2b211b" opacity=".7"/>
+              <circle cx="126" cy="306" r="4" fill="#ffce78" opacity=".8"/>
+              <circle cx="126" cy="306" r="8" fill="#ffbd62" opacity=".16" filter="url(#softGlow)"/>
+              <path d="M126 311 V321" stroke="#f7ca84" stroke-width="1.2" opacity=".35"/>
+            </g>
+
+            <!-- 前景叶影 -->
+            <g fill="#161612">
+              <path d="M-25 390 C24 354 56 312 40 259 C72 294 74 343 55 390Z"/>
+              <path d="M8 390 C77 360 122 314 144 263 C128 326 96 368 50 390Z" opacity=".88"/>
+              <path d="M600 390 C566 352 550 312 558 264 C536 299 526 350 546 390Z" opacity=".8"/>
+              <path d="M600 377 C546 357 511 327 487 291 C519 331 554 353 600 361Z" opacity=".65"/>
+            </g>
+            <g fill="#f7bd72" opacity=".45">
+              <circle cx="32" cy="99" r="1.4"/>
+              <circle cx="93" cy="64" r="1"/>
+              <circle cx="188" cy="119" r="1.2"/>
+              <circle cx="508" cy="53" r="1.3"/>
+              <circle cx="568" cy="113" r="1"/>
+              <circle cx="446" cy="118" r=".9"/>
+            </g>
+          </svg>
+        </div>
+        <div class="table-surface"></div>
+        <div class="scene-veil"></div>
+        <div class="scene-grain"></div>
+      </div>
+
+      <!-- ================= HUD ================= -->
+      <header class="hud" inert>
+        <button class="btn-round hud-pause" id="pauseBtn" type="button" aria-label="暂停游戏" title="暂停">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="5" width="3.6" height="14" rx="1.8"/><rect x="13.9" y="5" width="3.6" height="14" rx="1.8"/></svg>
+        </button>
+        <div class="hud-center">
+          <span class="hud-kicker">挑战</span>
+          <span class="hud-progress">还剩 <strong id="remaining">57</strong> 个</span>
+          <span class="hud-clock" id="timer" aria-label="已用时">00:00</span>
+        </div>
+        <div class="hud-score" id="scoreBox" title="解压值" aria-label="解压值 0">
+          <span class="coin" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#f6c454" stroke="#9d651f" stroke-width="2"/><circle cx="16" cy="16" r="10" fill="none" stroke="#fff0b4" stroke-width="1.5" opacity=".8"/><path d="M12 19 C12 13 16 10 16 10 C16 10 20 13 20 19 C19 17 17 17 16 19 C15 17 13 17 12 19Z" fill="#b96a21" opacity=".7"/></svg>
+          </span>
+          <span id="score">0</span>
+        </div>
+        <button class="btn-round hud-sound" id="muteBtn" type="button" aria-label="关闭背景音乐" title="背景音乐">
+          <svg class="icon-sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.3H8L13 5.3V18.7L8 14.7H4Z" fill="currentColor"/><path d="M16 9 C18 10.8 18 13.2 16 15 M18.7 6.6 C22.3 9.8 22.3 14.2 18.7 17.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <svg class="icon-sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.3H8L13 5.3V18.7L8 14.7H4Z" fill="currentColor"/><path d="M16.5 9.5 L21 14 M21 9.5 L16.5 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </header>
+
+      <!-- ================= 订单 ================= -->
+      <section class="orders" aria-label="本桌订单" inert>
+        <div class="orders-bar">
+          <div class="orders-title">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16 C3 12 6 8 10 9 C10 5 16 4 17 8 C21 7 22 12 20 14 C22 17 19 20 16 19 C14 22 9 22 8 19 C5 20 3 18 5 16Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 13 C10 12 11 13 12 14 C13 12 15 11 17 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            <span>本桌订单</span>
+            <em id="servedCount">0 / 19</em>
+          </div>
+          <p class="orders-hint">凑齐 3 份 · 自动换单</p>
+        </div>
+        <div class="order-shelf">
+          <div class="leaf-runner" aria-hidden="true"></div>
+          <div class="plate-row" id="plateRow"></div>
+        </div>
+      </section>
+
+      <!-- ================= 临时存放盘 ================= -->
+      <section class="temp-shelf" id="tempShelf" aria-label="临时存放盘" inert>
+        <div class="temp-shelf-label">
+          <span>临时盘</span>
+          <em id="tempCount">0 / 5</em>
+        </div>
+        <div class="temp-plate-row" id="tempPlateRow" role="list"></div>
+      </section>
+
+      <!-- ================= 锅 ================= -->
+      <section class="pot-stage" id="potStage" aria-label="火锅" inert>
+        <div class="pot-wrap" id="potWrap">
+          <div class="steam-rig" aria-hidden="true">
+            <svg viewBox="0 0 600 330" preserveAspectRatio="xMidYMax meet">
+              <defs>
+                <filter id="steamBlur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+              </defs>
+              <g filter="url(#steamBlur)" fill="none" stroke="#fff4dd" stroke-linecap="round">
+                <path class="steam-path s1" d="M166 326 C134 278 170 246 155 207 C143 176 161 147 187 131" stroke-width="14" opacity=".22"/>
+                <path class="steam-path s2" d="M280 328 C251 287 286 260 277 226 C267 190 292 158 323 147" stroke-width="19" opacity=".16"/>
+                <path class="steam-path s3" d="M410 330 C381 285 415 251 402 217 C390 183 418 153 449 142" stroke-width="12" opacity=".17"/>
+                <path class="steam-path s4" d="M505 325 C478 289 501 259 491 227" stroke-width="8" opacity=".12"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="pot-shadow" aria-hidden="true"></div>
+
+          <div class="table-deco deco-left" aria-hidden="true">
+            <svg viewBox="0 0 150 125">
+              <defs>
+                <radialGradient id="sauceOil" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#e9893d"/><stop offset="1" stop-color="#a6341c"/></radialGradient>
+              </defs>
+              <ellipse cx="76" cy="89" rx="58" ry="20" fill="#170c06" opacity=".55"/>
+              <ellipse cx="74" cy="76" rx="55" ry="27" fill="#d4c4a7" stroke="#8b7458" stroke-width="2"/>
+              <ellipse cx="74" cy="71" rx="46" ry="21" fill="#efe3ca" stroke="#b19b7c" stroke-width="1.2"/>
+              <ellipse cx="74" cy="70" rx="35" ry="15" fill="url(#sauceOil)" stroke="#782819" stroke-width="1.5"/>
+              <ellipse cx="65" cy="65" rx="11" ry="3.4" fill="#ffd18d" opacity=".35"/>
+              <path d="M56 73 C70 69 89 71 101 76" fill="none" stroke="#6c1a10" stroke-width="1.3" opacity=".42"/>
+              <path d="M53 60 L29 48" stroke="#d8c6a5" stroke-width="5" stroke-linecap="round"/>
+              <path d="M53 60 L29 48" stroke="#fff4df" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+              <ellipse cx="57" cy="87" rx="9" ry="3" fill="#90321d" opacity=".5"/>
+              <path d="M120 57 C126 44 140 43 142 51 C144 59 132 64 123 60Z" fill="#456c31" opacity=".8"/>
+            </svg>
+          </div>
+
+          <div class="table-deco deco-right" aria-hidden="true">
+            <svg viewBox="0 0 150 150">
+              <defs>
+                <linearGradient id="brassPot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e0b86a"/><stop offset=".5" stop-color="#a5722e"/><stop offset="1" stop-color="#5c3b18"/></linearGradient>
+              </defs>
+              <ellipse cx="80" cy="128" rx="53" ry="16" fill="#140a05" opacity=".55"/>
+              <path d="M44 54 C25 64 22 107 43 121 C58 131 103 131 117 118 C137 100 130 65 111 54Z" fill="url(#brassPot)" stroke="#5d3b19" stroke-width="2.2"/>
+              <ellipse cx="78" cy="55" rx="34" ry="10" fill="#d7a554" stroke="#5d3b19" stroke-width="2"/>
+              <path d="M68 46 C73 39 85 38 91 44" fill="none" stroke="#73501e" stroke-width="3" stroke-linecap="round"/>
+              <path d="M79 30 C91 22 106 24 114 34 C104 37 94 36 85 31" fill="#b28037" stroke="#5d3b19" stroke-width="1.6"/>
+              <circle cx="80" cy="27" r="4" fill="#d8ad60" stroke="#5d3b19" stroke-width="1.5"/>
+              <path d="M43 66 C27 58 15 72 27 85 C35 94 46 88 48 78" fill="none" stroke="#795120" stroke-width="6" stroke-linecap="round"/>
+              <path d="M46 65 C50 91 60 110 80 121 C98 110 108 91 110 64" fill="none" stroke="#f0c87b" stroke-width="1.7" opacity=".28"/>
+              <path d="M56 51 C63 45 78 43 88 47" fill="none" stroke="#ffe0a2" stroke-width="2" opacity=".45"/>
+              <path d="M124 93 C135 88 140 79 137 69" fill="none" stroke="#6b4b1e" stroke-width="2.2"/>
+              <circle cx="128" cy="105" r="2.4" fill="#f2cf89" opacity=".28"/>
+            </svg>
+          </div>
+
+          <div class="pot" id="pot">
+            <div class="pot-handle handle-left" aria-hidden="true"></div>
+            <div class="pot-handle handle-right" aria-hidden="true"></div>
+            <div class="pot-rim">
+              <div class="broth" id="broth">
+                <div class="broth-base" aria-hidden="true"></div>
+                <div class="broth-pepper" aria-hidden="true">
+                  <i style="left:15%;top:22%;--r:20deg"></i>
+                  <i style="left:78%;top:17%;--r:-30deg"></i>
+                  <i style="left:64%;top:82%;--r:12deg"></i>
+                  <i style="left:26%;top:77%;--r:58deg"></i>
+                  <i style="left:86%;top:56%;--r:70deg"></i>
+                  <i style="left:8%;top:52%;--r:-8deg"></i>
+                </div>
+                <div class="broth-swirls" aria-hidden="true">
+                  <svg viewBox="0 0 500 500" preserveAspectRatio="none">
+                    <g fill="none" stroke="#ffb373" stroke-linecap="round">
+                      <path d="M59 217 C122 173 178 178 236 208 C283 232 329 222 366 190" stroke-width="2" opacity=".14"/>
+                      <path d="M94 308 C158 280 217 292 272 315 C330 339 376 330 413 304" stroke-width="1.5" opacity=".11"/>
+                      <path d="M151 128 C214 152 259 149 305 124" stroke-width="1.4" opacity=".1"/>
+                      <path d="M123 391 C194 364 246 371 306 396" stroke-width="2" opacity=".09"/>
+                      <path d="M334 377 C372 359 407 361 442 379" stroke-width="1.2" opacity=".1"/>
+                    </g>
+                    <g fill="#ffd28b" opacity=".22">
+                      <circle cx="112" cy="158" r="2"/><circle cx="198" cy="88" r="1.3"/><circle cx="318" cy="109" r="2.2"/>
+                      <circle cx="390" cy="244" r="1.5"/><circle cx="428" cy="346" r="1.8"/><circle cx="81" cy="343" r="1.4"/>
+                      <circle cx="263" cy="329" r="1.2"/><circle cx="347" cy="70" r="1.1"/>
+                    </g>
+                    <g fill="none" stroke="#7f2113" stroke-width="2.2" opacity=".28">
+                      <circle cx="92" cy="258" r="7"/><circle cx="388" cy="136" r="5"/><circle cx="330" cy="418" r="6"/><circle cx="430" cy="302" r="4"/>
+                    </g>
+                  </svg>
+                </div>
+                <div class="broth-bubbles" id="brothBubbles" aria-hidden="true"></div>
+                <div class="items-layer" id="itemsLayer" aria-label="锅里的食材"></div>
+                <div class="broth-glaze" aria-hidden="true"></div>
+                <div class="broth-glints" aria-hidden="true">
+                  <span class="glint g1"></span>
+                  <span class="glint g2"></span>
+                  <span class="glint g3"></span>
+                  <span class="foam f1"></span>
+                  <span class="foam f2"></span>
+                  <span class="foam f3"></span>
+                  <span class="foam f4"></span>
+                </div>
+                <div class="soup-rim-shade" aria-hidden="true"></div>
+              </div>
+              <div class="rim-inner-highlight" aria-hidden="true"></div>
+            </div>
+            <div class="pot-shine" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="pot-caption"><span></span>汤面微沸 · 慢慢捞<span></span></p>
+      </section>
+
+      <!-- ================= 工具 ================= -->
+      <nav class="tools" aria-label="辅助工具" inert>
+        <button class="tool-btn" id="hintBtn" type="button" aria-label="提示：高亮锅里的目标食材">
+          <span class="tool-disc">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="14.5" cy="14" r="7.7" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M20.2 20 L26 26" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M11.5 14 C12.5 11.6 15 10.8 17.2 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity=".8"/><path d="M23 5.2 l.8 2.1 2.1.8 -2.1.8 -.8 2.1 -.8 -2.1 -2.1 -.8 2.1 -.8Z" fill="currentColor" opacity=".9"/></svg>
+          </span>
+          <span class="tool-label">提示</span>
+        </button>
+        <button class="tool-btn" id="addPlateBtn" type="button" aria-label="加一只碟子，多出一道订单">
+          <span class="tool-disc">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="20.5" rx="11.5" ry="4.3" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M4.5 20.5 C4.5 15 10 12.4 16 12.4 C22 12.4 27.5 15 27.5 20.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M23.5 5 L23.5 12 M20 8.5 L27 8.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </span>
+          <span class="tool-label">加碟子</span>
+          <span class="tool-badge">+</span>
+        </button>
+        <button class="tool-btn" id="shuffleBtn" type="button" aria-label="打乱锅里的食材位置">
+          <span class="tool-disc">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 10.5 H9 C14 10.5 18 21.5 23 21.5 H27" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M5 21.5 H9 C12 21.5 14 18 16 15 C18 12 20 10.5 23 10.5 H27" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M24 6.5 L28 10.5 L24 14.5 M24 17.5 L28 21.5 L24 25.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="tool-label">打乱</span>
+        </button>
+        <button class="tool-btn" id="shakeBtn" type="button" aria-label="轻轻震动火锅，让食材动一动">
+          <span class="tool-disc">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 15 H25 C24 21 21.5 25 16 25 C10.5 25 8 21 7 15Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/><path d="M9.5 11.2 Q16 8.4 22.5 11.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 7.8 C5 6.4 6 6.4 7 7.8 M16 4 C17 2.6 18 2.6 19 4 M27 7.8 C28 6.4 29 6.4 30 7.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M3 17 C1.5 16 1.5 14 3 13 M29 17 C30.5 16 30.5 14 29 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity=".85"/></svg>
+          </span>
+          <span class="tool-label">震动</span>
+        </button>
+      </nav>
+
+      <div class="toast-stack" id="toastStack" aria-hidden="true"></div>
+      <p class="sr-only" id="announcer" role="status" aria-live="polite"></p>
+
+      <!-- ================= 开始页 ================= -->
+      <section class="screen start-screen" id="startScreen" role="dialog" aria-modal="true" aria-labelledby="gameTitle">
+        <div class="screen-ambient" aria-hidden="true"></div>
+        <div class="intro-shell">
+          <header class="intro-head">
+            <div class="intro-kicker"><span></span>慢火 · 一人食<span></span></div>
+            <div class="intro-title-row">
+              <div class="intro-seal" aria-hidden="true"><span>解</span><span>压</span></div>
+              <h1 id="gameTitle">解压火锅店</h1>
+            </div>
+            <p class="intro-tagline">把这一锅，慢慢捞干净。</p>
+          </header>
+
+          <div class="intro-emblem" aria-hidden="true">
+            <div class="intro-steam"><i></i><i></i><i></i></div>
+            <div class="intro-bowl">
+              <div class="intro-broth">
+                <span class="intro-food f1" data-intro-food="crab"></span>
+                <span class="intro-food f2" data-intro-food="fish-tofu"></span>
+                <span class="intro-food f3" data-intro-food="red-date"></span>
+                <span class="intro-food f4" data-intro-food="ginger"></span>
+                <span class="intro-food f5" data-intro-food="tomato"></span>
+                <span class="intro-food f6" data-intro-food="egg"></span>
+                <span class="intro-food f7" data-intro-food="ribs"></span>
+                <span class="intro-food f8" data-intro-food="cucumber"></span>
+                <span class="intro-bowl-gloss"></span>
+              </div>
+            </div>
+            <span class="emblem-tag">今日锅底<br><b>番茄牛油</b></span>
+          </div>
+
+          <ol class="intro-steps">
+            <li><b>01</b><span><strong>看订单</strong><em>上方餐盘是要找的食材</em></span></li>
+            <li><b>02</b><span><strong>捞三份</strong><em>点一份落一盘，凑满三份</em></span></li>
+            <li><b>03</b><span><strong>再换单</strong><em>上齐自动换，直到锅空</em></span></li>
+          </ol>
+
+          <div class="intro-actions">
+            <button class="btn-primary" id="startBtn" type="button">
+              <span class="btn-primary-shine" aria-hidden="true"></span>
+              <span class="btn-primary-text"><b>开锅</b><small>慢慢捞，不赶时间</small></span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12 H18 M13 6 L19 12 L13 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="intro-audio" id="introMuteBtn" type="button" aria-pressed="true">
+              <span class="music-dot" aria-hidden="true"></span>
+              <span id="introAudioText">轻柔锅物小调 · 点此静音</span>
+            </button>
+          </div>
+
+          <footer class="intro-foot">
+            <span>本锅 <b>57</b> 份</span><i></i><span>19 种食材</span><i></i><span>没有倒计时</span>
+          </footer>
+        </div>
+      </section>
+
+      <!-- ================= 暂停页 ================= -->
+      <section class="screen pause-screen" id="pauseScreen" role="dialog" aria-modal="true" aria-labelledby="pauseTitle" hidden>
+        <div class="modal-card pause-card">
+          <span class="modal-kicker">PAUSE · 歇一会儿</span>
+          <h2 id="pauseTitle">锅还温着</h2>
+          <p class="modal-copy">回来接着捞，食材都替你留着。</p>
+          <div class="pause-stats">
+            <div><span>剩余食材</span><strong id="pauseRemaining">57</strong></div>
+            <div><span>已上桌</span><strong id="pauseServed">0</strong></div>
+            <div><span>解压值</span><strong id="pauseScore">0</strong></div>
+          </div>
+          <button class="btn-primary btn-compact" id="resumeBtn" type="button"><span class="btn-primary-text"><b>继续捞</b><small>接着刚才那口热乎气</small></span></button>
+          <div class="modal-row">
+            <button class="btn-secondary" id="restartFromPause" type="button">重开一锅</button>
+            <button class="btn-secondary" id="pauseMuteBtn" type="button">背景音乐：开</button>
+          </div>
+          <p class="modal-tip">小提示：点击上方订单，会让锅里同款食材轻轻发光。</p>
+        </div>
+      </section>
+
+      <!-- ================= 完成页 ================= -->
+      <section class="screen finish-screen" id="finishScreen" role="dialog" aria-modal="true" aria-labelledby="finishTitle" hidden>
+        <div class="finish-steam" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="finish-shell">
+          <div class="finish-stamp" aria-hidden="true">净</div>
+          <span class="modal-kicker">锅底见空 · 收工</span>
+          <h2 id="finishTitle">这一锅，<br>捞得真干净。</h2>
+          <p class="finish-copy">汤底还热，心里已经松下来。</p>
+          <div class="result-grid">
+            <div class="result-item"><span>这一锅用时</span><strong id="finishTime">00:00</strong></div>
+            <div class="result-item"><span>上桌碟数</span><strong id="finishPlates">0</strong></div>
+            <div class="result-item"><span>解压值</span><strong id="finishScore">0</strong></div>
+          </div>
+          <p class="best-line" id="bestLine" hidden>最快清锅纪录 · <b>00:00</b></p>
+          <button class="btn-primary finish-again" id="againBtn" type="button"><span class="btn-primary-text"><b>再涮一锅</b><small>热气不停，慢慢来</small></span></button>
+          <p class="finish-foot">今日份的解压，已出锅。</p>
+        </div>
+      </section>
+
+      <noscript><p class="noscript">这道菜需要开启 JavaScript 才能慢慢涮。</p></noscript>
+    </main>
+
+    <aside class="desk-note" aria-hidden="true">
+      <span class="desk-note-en">SLOW HOT POT</span>
+      <p>人间烟火气<br>最抚凡人心</p>
+      <span class="desk-note-line"></span>
+      <small>一锅 · 一碟 · 三份</small>
+    </aside>
+  </div>
+
+  <script src="ingredients.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
